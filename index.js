@@ -30,14 +30,14 @@ app.get('/', (req, res) => {
 
 app.post('/api', (req, res) => {
 	command = req.body.command;
-	console.log(`Command received: ${command}`);
 
 	try
 	{
 			if (validCommands.includes(command)) {
 				// Send GPIO based on command
+				console.log(`Command processed: '${command}'`);
 
-				res.sendStatus(200); // Send OK
+				res.sendStatus(200); // Send OK if task completed successfully
 			}
 			else {
 				throw('Unrecognised command');
