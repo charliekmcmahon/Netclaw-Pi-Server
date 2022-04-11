@@ -1,5 +1,5 @@
 // NetClaw Raspberry Pi Server.
-// Code by Charlie from Netclaw, 22 August 2021
+// Code by Charlie & Sam from Netclaw, 22 August 2021
 
 const Gpio = require('onoff').Gpio;
 const express = require('express');
