@@ -13,7 +13,7 @@ const validCommands = ["up", "down", "left", "right", "go", "start", "drop", "st
 
 // Express consts
 const app = express();
-const port = 80;
+const port = 8000;
 
 // Api vars
 var command;
