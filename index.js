@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-  res.send('This is a NetClaw node. Please go to netclaw.com.au to play. Hmm, i wonder if this will work?')
+  res.send('This is a NetClaw node. Please go to netclaw.com.au to play. Working @23:45 24/4.');
 
 })
 
