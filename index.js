@@ -80,6 +80,9 @@ app.post('/api', (req, res) => {
 			}
 			else if (command == "start") {
 				start.writeSync(1);
+				setTimeout(function() {
+					start.writeSync(1);
+				  }, 100);
 				previousCmd = "start";
 			}
 			else if (command == "drop") {
