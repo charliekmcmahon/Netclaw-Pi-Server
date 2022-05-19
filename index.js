@@ -10,6 +10,8 @@ const cors = require('cors');
 //const { times } = require('lodash');
 //const { response } = require('express');
 
+const pins = {"up":5, "down":6, "left":13, "right":19, "drop":26, "start":21};
+
 // Valid commands
 const validCommands = ["up", "down", "left", "right", "go", "start", "drop", "stop"];
 
@@ -20,6 +22,7 @@ const port = 8000;
 // Api vars
 var command;
 var auth;
+var previousCmd;
 
 // Express options
 app.use(cors());
@@ -51,30 +54,35 @@ app.post('/api', (req, res) => {
 
 			if (command == "up") {
 				up.writeSync(1);
+				previousCmd = "up";
 			}
 			else if (command == "down") {
 				down.writeSync(1);
+				previousCmd = "down";
 			}
 			else if (command == "left") {
 				left.writeSync(1);
+				previousCmd = "left";
 			}
 			else if (command == "right") {
 				right.writeSync(1);
+				previousCmd = "right";
 			}
 			else if (command == "go") {
 				go.writeSync(1);
+				previousCmd = "go";
 			}
 			else if (command == "start") {
 				start.writeSync(1);
+				previousCmd = "start";
 			}
 			else if (command == "drop") {
 				drop.writeSync(1);
+				previousCmd = "drop";
 			}
 			else if (command == "stop") {
-				function stop(dir) {
-					dir.writeSync(0);
-				}
-				stop(command);
+				var stop = new Gpio(pins[previousCmd], 'out');
+				stop.writeSync(0);
 			}
 
 			res.sendStatus(200); // Send OK if task completed successfully
@@ -85,7 +93,7 @@ app.post('/api', (req, res) => {
 	}
 	catch(err) {
 		// An error occured
-		res.send(err);
+		res.send(400);
 	}
 
 	
