@@ -43,7 +43,6 @@ app.get('/up', (req, res) => {
 
 app.post('/api', (req, res) => {
 	command = req.body.command;
-	console.log(command);
 
 	try {
 		if (validCommands.includes(command)) {
@@ -72,7 +71,10 @@ app.post('/api', (req, res) => {
 				drop.writeSync(1);
 			}
 			else if (command == "stop") {
-				stop.writeSync(1);
+				function stop(dir) {
+					dir.writeSync(0);
+				}
+				stop(command);
 			}
 
 			res.sendStatus(200); // Send OK if task completed successfully
@@ -84,7 +86,6 @@ app.post('/api', (req, res) => {
 	catch(err) {
 		// An error occured
 		res.send(err);
-		res.sendStatus(400); // Send request error - 400
 	}
 
 	
