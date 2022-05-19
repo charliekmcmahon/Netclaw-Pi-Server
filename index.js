@@ -8,8 +8,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-//Griffin is black
-
 // Valid commands
 const validCommands = ["up", "down", "left", "right", "go", "start", "drop", "stop"];
 
@@ -43,23 +41,45 @@ app.get('/up', (req, res) => {
 app.post('/api', (req, res) => {
 	command = req.body.command;
 
-	try
-	{
-			if (validCommands.includes(command)) {
-				// Send GPIO based on command
-				console.log(`Command processed: '${command}'`);
+	try {
+		if (validCommands.includes(command)) {
+			// Send GPIO based on command
+			console.log(`Command processed: '${command}'`);
 
-				res.sendStatus(200); // Send OK if task completed successfully
+			if (command == "up") {
+				up.writeSync(1);
 			}
-			else {
-				throw('Unrecognised command');
+			else if (command == "down") {
+				down.writeSync(1);
 			}
-			
+			else if (command == "left") {
+				left.writeSync(1);
+			}
+			else if (command == "right") {
+				right.writeSync(1);
+			}
+			else if (command == "go") {
+				go.writeSync(1);
+			}
+			else if (command == "start") {
+				start.writeSync(1);
+			}
+			else if (command == "drop") {
+				drop.writeSync(1);
+			}
+			else if (command == "stop") {
+				stop.writeSync(1);
+			}
+
+			res.sendStatus(200); // Send OK if task completed successfully
+		}
+		else {
+			throw('Unrecognised command');
+		}
 	}
-	catch(err)
-	{
-			// An error occured
-			res.sendStatus(400); // Send request error - 400
+	catch(err) {
+		// An error occured
+		res.sendStatus(400); // Send request error - 400
 	}
 
 	
