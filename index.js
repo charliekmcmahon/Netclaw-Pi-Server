@@ -28,8 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-  res.send('This is a NetClaw node. Please go to netclaw.com.au to play. Version ' + new Date());
-
+  var response = 'This is a NetClaw node. Please go to netclaw.com.au to play. Version ';
+  response = response + toString(Math.floor(Date.now() / 60000));
+  res.send(response);
 })
 app.get('/up', (req, res) => {
 	res.send('Up!');
