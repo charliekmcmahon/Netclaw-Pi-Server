@@ -82,7 +82,7 @@ app.post('/api', (req, res) => {
 				start.writeSync(1);
 				setTimeout(function() {
 					console.log("Start pressed");
-					start.writeSync(1);
+					start.writeSync(0);
 				  }, 100);
 				previousCmd = "start";
 			}
