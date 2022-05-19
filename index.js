@@ -43,6 +43,7 @@ app.get('/up', (req, res) => {
 
 app.post('/api', (req, res) => {
 	command = req.body.command;
+	console.log(command);
 
 	try {
 		if (validCommands.includes(command)) {
