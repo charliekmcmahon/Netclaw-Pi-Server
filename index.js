@@ -86,6 +86,10 @@ app.post('/api', (req, res) => {
 				previousCmd = "start";
 			}
 			else if (command == "drop") {
+				left.writeSync(1);
+				setTimeout(function() {
+					left.writeSync(0);
+				  }, 50);
 				drop.writeSync(1);
 				setTimeout(function() {
 					drop.writeSync(0);
