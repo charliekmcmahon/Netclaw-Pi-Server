@@ -3,6 +3,7 @@
 // Test update 2
 
 const Gpio = require('onoff').Gpio;
+const up = new Gpio(5, 'out');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -31,8 +32,12 @@ app.get('/', (req, res) => {
 
 })
 app.get('/up', (req, res) => {
-	res.send('Up');
-  
+	res.send('Up!');
+  up.writeSync(1);
+  })
+  app.get('/stop', (req, res) => {
+	res.send('Stop!');
+  up.writeSync(0);
   })
 
 app.post('/api', (req, res) => {
