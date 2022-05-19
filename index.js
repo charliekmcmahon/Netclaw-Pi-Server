@@ -7,8 +7,8 @@ const up = new Gpio(5, 'out');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { times } = require('lodash');
-const { response } = require('express');
+//const { times } = require('lodash');
+//const { response } = require('express');
 
 // Valid commands
 const validCommands = ["up", "down", "left", "right", "go", "start", "drop", "stop"];
@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-  var response = 'This is a NetClaw node. Please go to netclaw.com.au to play. Version ';
-  response = response + toString(Math.floor(Date.now() / 60000));
-  res.send(response);
+  var resp = 'This is a NetClaw node. Please go to netclaw.com.au to play. Version ';
+  resp = resp + toString(Math.floor(Date.now() / 60000));
+  res.send(resp);
 })
 app.get('/up', (req, res) => {
 	res.send('Up!');
