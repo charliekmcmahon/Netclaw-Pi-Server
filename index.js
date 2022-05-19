@@ -81,13 +81,15 @@ app.post('/api', (req, res) => {
 			else if (command == "start") {
 				start.writeSync(1);
 				setTimeout(function() {
-					console.log("Start pressed");
 					start.writeSync(0);
 				  }, 100);
 				previousCmd = "start";
 			}
 			else if (command == "drop") {
 				drop.writeSync(1);
+				setTimeout(function() {
+					drop.writeSync(0);
+				  }, 100);
 				previousCmd = "drop";
 			}
 			else if (command == "stop") {
