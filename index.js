@@ -30,6 +30,10 @@ app.get('/', (req, res) => {
   res.send('This is a NetClaw node. Please go to netclaw.com.au to play. Working @23:45 24/4.');
 
 })
+app.get('/up', (req, res) => {
+	res.send('Up');
+  
+  })
 
 app.post('/api', (req, res) => {
 	command = req.body.command;
