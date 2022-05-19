@@ -3,7 +3,6 @@
 // Test update 2
 
 const Gpio = require('onoff').Gpio;
-const up = new Gpio(5, 'out');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -11,6 +10,13 @@ const cors = require('cors');
 //const { response } = require('express');
 
 const pins = {"up":5, "down":6, "left":13, "right":19, "drop":26, "start":21};
+
+const up = new Gpio(pins["up"], 'out');
+const down = new Gpio(pins["down"], 'out');
+const left = new Gpio(pins["left"], 'out');
+const right = new Gpio(pins["right"], 'out');
+const drop = new Gpio(pins["drop"], 'out');
+const start = new Gpio(pins["start"], 'out');
 
 // Valid commands
 const validCommands = ["up", "down", "left", "right", "go", "start", "drop", "stop"];
