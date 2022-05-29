@@ -60,30 +60,39 @@ app.post('/api', (req, res) => {
 
 			if (command == "up") {
 				up.writeSync(1);
-				previousCmd = "up";
+				setTimeout(function() {
+					up.writeSync(0);
+				  }, 100);
 			}
 			else if (command == "down") {
 				down.writeSync(1);
-				previousCmd = "down";
+				setTimeout(function() {
+					down.writeSync(0);
+				  }, 100);
 			}
 			else if (command == "left") {
 				left.writeSync(1);
-				previousCmd = "left";
+				setTimeout(function() {
+					left.writeSync(0);
+				  }, 100);
 			}
 			else if (command == "right") {
 				right.writeSync(1);
-				previousCmd = "right";
+				setTimeout(function() {
+					right.writeSync(0);
+				  }, 100);
 			}
 			else if (command == "go") {
 				go.writeSync(1);
-				previousCmd = "go";
+				setTimeout(function() {
+					go.writeSync(0);
+				  }, 100);
 			}
 			else if (command == "start") {
 				start.writeSync(1);
 				setTimeout(function() {
 					start.writeSync(0);
 				  }, 100);
-				previousCmd = "start";
 			}
 			else if (command == "drop") {
 				left.writeSync(1);
@@ -94,11 +103,13 @@ app.post('/api', (req, res) => {
 				setTimeout(function() {
 					drop.writeSync(0);
 				  }, 100);
-				previousCmd = "drop";
 			}
 			else if (command == "stop") {
-				var stop = new Gpio(pins[previousCmd], 'out');
-				stop.writeSync(0);
+				up.writeSync(0);
+				down.writeSync(0);
+				left.writeSync(0);
+				right.writeSync(0);
+				drop.writeSync(0);
 			}
 
 			res.sendStatus(200); // Send OK if task completed successfully
