@@ -60,27 +60,15 @@ app.post('/api', (req, res) => {
 
 			if (command == "up") {
 				up.writeSync(1);
-				setTimeout(function() {
-					up.writeSync(0);
-				  }, 100);
 			}
 			else if (command == "down") {
 				down.writeSync(1);
-				setTimeout(function() {
-					down.writeSync(0);
-				  }, 100);
 			}
 			else if (command == "left") {
 				left.writeSync(1);
-				setTimeout(function() {
-					left.writeSync(0);
-				  }, 100);
 			}
 			else if (command == "right") {
 				right.writeSync(1);
-				setTimeout(function() {
-					right.writeSync(0);
-				  }, 100);
 			}
 			else if (command == "go") {
 				go.writeSync(1);
